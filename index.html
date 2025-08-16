@@ -1,154 +1,252 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
-    <style>
-        /* RESET */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Página Web</title>
+  <style>
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; }
 
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: #d81b60;
-            padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            color: white;
-            z-index: 1000;
-        }
-        nav h1 { font-size: 22px; }
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-        nav ul li {
-            margin: 0 10px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: #ff0000;
+      padding: 15px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      color: white;
+      z-index: 1000;
+    }
+    nav h1 { font-size: 22px; }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
 
-        /* SECCIONES */
-        section {
-            padding: 100px 20px;
-            min-height: 100vh;
-        }
-        #inicio {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://picsum.photos/1200/600") center/cover no-repeat;
-            color: white;
-            text-align: center;
-            display: flex; justify-content: center; align-items: center;
-            flex-direction: column;
-        }
-        #inicio h2 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-        #inicio p { font-size: 20px; }
+    /* SECCIONES */
+    section {
+      padding: 100px 20px;
+      min-height: 100vh;
+    }
+    #inicio {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://picsum.photos/1200/600") center/cover no-repeat;
+      color: white;
+      text-align: center;
+      display: flex; justify-content: center; align-items: center;
+      flex-direction: column;
+    }
+    #inicio h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    #inicio p { font-size: 20px; }
 
-        #sobre, #servicios, #contacto {
-            background: #f5f5f5;
-            margin-top: 10px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #d81b60;
-        }
-        .contenedor {
-            max-width: 1000px;
-            margin: auto;
-            text-align: center;
-        }
+    #sobre, #servicios, #contacto {
+      background: #f5f5f5;
+      margin-top: 10px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #000;
+    }
+    .contenedor {
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
 
-        /* FOOTER */
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+    /* PRODUCTOS */
+    #productos {
+      background: #fff;
+      margin-top: 10px;
+      padding: 80px 20px;
+    }
+    .grid-productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .card h3 { margin: 10px 0; color: #333; }
+    .card p { font-size: 14px; color: #555; }
+    .precio {
+      font-weight: bold;
+      color: #e91e63;
+      margin: 10px 0;
+    }
+    .card button {
+      background: #ff0000;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .card button:hover { background: #cc0000; }
 
-        /* RESPONSIVE */
-        @media(max-width:768px){
-            nav ul { flex-direction: column; display: none; background: #d81b60; padding: 10px; }
-            nav ul.show { display: flex; }
-            .menu-toggle {
-                display: block;
-                cursor: pointer;
-            }
-        }
-        .menu-toggle { display: none; }
-    </style>
+    /* FOOTER */
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      nav ul { flex-direction: column; display: none; background: #d81b60; padding: 10px; }
+      nav ul.show { display: flex; }
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+      }
+    }
+    .menu-toggle { display: none; }
+  </style>
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <h1>Mi Web</h1>
-        <span class="menu-toggle">☰</span>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#sobre">Sobre mí</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+  <!-- NAV -->
+  <nav>
+    <h1>Coronel Lugo</h1>
+    <span class="menu-toggle">☰</span>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
 
-    <!-- INICIO -->
-    <section id="inicio">
-        <h2>Bienvenido a Mi Página</h2>
-        <p>Un lugar donde comparto lo que hago 🚀</p>
-    </section>
+  <!-- INICIO -->
+  <section id="inicio">
+    <h2>Bienvenidos</h2>
+    <p>Disfruten su estancia</p>
+  </section>
 
-    <!-- SOBRE -->
-    <section id="sobre">
-        <div class="contenedor">
-            <h2>Sobre mí</h2>
-            <p>Hola, soy [Tu Nombre]. Aquí puedes escribir una breve descripción sobre ti, tu trabajo o tu proyecto.</p>
-        </div>
-    </section>
+  <!-- PRODUCTOS -->
+  <section id="productos">
+    <div class="contenedor">
+      <h2>Productos</h2>
+      <div class="grid-productos"></div>
+    </div>
+  </section>
 
-    <!-- SERVICIOS -->
-    <section id="servicios">
-        <div class="contenedor">
-            <h2>Servicios</h2>
-            <p>✅ Diseño Web</p>
-            <p>✅ Desarrollo de Aplicaciones</p>
-            <p>✅ Marketing Digital</p>
-        </div>
-    </section>
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="contenedor">
+      <h2>Sobre mí</h2>
+      <p>Hola, soy Coronel. Aquí puedes escribir una breve descripción sobre ti, tu trabajo o tu proyecto.</p>
+    </div>
+  </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto">
-        <div class="contenedor">
-            <h2>Contacto</h2>
-            <p>Email: <a href="mailto:tucorreo@example.com">tucorreo@example.com</a></p>
-            <p>Teléfono: +1 234 567 890</p>
-        </div>
-    </section>
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="contenedor">
+      <h2>Servicios</h2>
+      <p>✅ Diseño Web</p>
+      <p>✅ Desarrollo de Aplicaciones</p>
+      <p>✅ Marketing Digital</p>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2025 Mi Página Web - Todos los derechos reservados</p>
-    </footer>
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="contenedor">
+      <h2>Contacto</h2>
+      <p>Email: <a href="mailto:tucorreo@example.com">tucorreo@example.com</a></p>
+      <p>Teléfono: +1 234 567 890</p>
+    </div>
+  </section>
 
-    <script>
-        // Menú responsive
-        const toggle = document.querySelector(".menu-toggle");
-        const navLinks = document.querySelector("nav ul");
-        toggle.addEventListener("click", () => {
-            navLinks.classList.toggle("show");
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Mi Página Web - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    // Menú responsive
+    const toggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector("nav ul");
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+  </script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+    // 🔹 Configuración de tu proyecto Firebase (reemplaza con tus datos)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDusRcoXAsg1FUhdeYGVj5GppCIfL6T3aY",
+      authDomain: "logincoronel.firebaseapp.com",
+      databaseURL: "https://logincoronel-default-rtdb.firebaseio.com",
+      projectId: "logincoronel",
+      storageBucket: "logincoronel.firebasestorage.app",
+      messagingSenderId: "197092606276",
+      appId: "1:197092606276:web:9b47d89f88842b270a5711"
+    };
+
+    // Inicializar Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Referencia a productos en la base de datos
+    const productosRef = ref(db, "productos");
+
+    // Escuchar cambios en productos y mostrarlos
+    onValue(productosRef, (snapshot) => {
+      const contenedor = document.querySelector(".grid-productos");
+      contenedor.innerHTML = ""; // limpiar antes de cargar
+      const productos = snapshot.val();
+
+      if (productos) {
+        Object.keys(productos).forEach((id) => {
+          const prod = productos[id];
+          const card = document.createElement("div");
+          card.classList.add("card");
+          card.innerHTML = `
+            <img src="${prod.imagenUrl}" alt="${prod.nombre}">
+            <h3>${prod.nombre}</h3>
+            <p>${prod.descripcion}</p>
+            <p class="precio">$${prod.precio}</p>
+            <button>Comprar</button>
+          `;
+          contenedor.appendChild(card);
         });
-    </script>
+      }
+    });
+  </script>
 
 </body>
 </html>
