@@ -1,252 +1,257 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Página Web</title>
-  <style>
-    /* RESET */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; line-height: 1.6; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coronel Lugo</title>
+<style>
+  /* RESET */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; line-height: 1.6; }
 
-    /* NAVBAR */
-    nav {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      background: #ff0000;
-      padding: 15px 20px;
-      display: flex; justify-content: space-between; align-items: center;
-      color: white;
-      z-index: 1000;
-    }
-    nav h1 { font-size: 22px; }
-    nav ul {
-      list-style: none;
-      display: flex;
-    }
-    nav ul li {
-      margin: 0 10px;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav ul li a:hover {
-      text-decoration: underline;
-    }
+  /* NAVBAR */
+  nav { position: fixed; top:0; left:0; width:100%; background:#ff0000; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; color:white; z-index:1000; }
+  nav h1 { font-size:22px; }
+  nav ul { list-style:none; display:flex; }
+  nav ul li { margin:0 10px; }
+  nav ul li a { color:white; text-decoration:none; font-weight:bold; }
+  nav ul li a:hover { text-decoration:underline; }
+  .menu-toggle { display:none; cursor:pointer; }
 
-    /* SECCIONES */
-    section {
-      padding: 100px 20px;
-      min-height: 100vh;
-    }
-    #inicio {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://picsum.photos/1200/600") center/cover no-repeat;
-      color: white;
-      text-align: center;
-      display: flex; justify-content: center; align-items: center;
-      flex-direction: column;
-    }
-    #inicio h2 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-    #inicio p { font-size: 20px; }
+  /* SECCIONES */
+  section { padding:100px 20px; min-height:100vh; }
+  #inicio { background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("https://picsum.photos/1200/600") center/cover no-repeat; color:white; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; }
+  #inicio h2 { font-size:40px; margin-bottom:10px; }
+  #inicio p { font-size:20px; }
+  h2 { text-align:center; margin-bottom:20px; color:#000; }
+  .contenedor { max-width:1200px; margin:auto; }
 
-    #sobre, #servicios, #contacto {
-      background: #f5f5f5;
-      margin-top: 10px;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #000;
-    }
-    .contenedor {
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
-    }
+  /* PRODUCTOS */
+  #productos { background:#fff; margin-top:10px; padding:80px 20px; }
+  .productos-layout { display:flex; gap:20px; }
+  #categorias { width:200px; flex-shrink:0; display:flex; flex-direction:column; gap:10px; }
+  #categorias button { padding:10px; border:none; border-radius:8px; cursor:pointer; background:#eee; transition:0.3s; text-align:left; }
+  #categorias button.active, #categorias button:hover { background:#ff0000; color:white; }
+  .grid-productos { flex:1; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+  .card { background:#f9f9f9; border-radius:10px; padding:15px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; transition:transform 0.2s ease; cursor:pointer; position:relative; overflow:hidden; }
+  .card:hover { transform:translateY(-5px); }
+  .card img { max-width:100%; border-radius:10px; margin-bottom:10px; height:150px; object-fit:cover; }
+  .card h3 { margin:10px 0; color:#333; }
+  .card p { font-size:14px; color:#555; }
+  .precio { font-weight:bold; color:#e91e63; margin:10px 0; }
+  .card button { background:#ff0000; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; }
+  .card button:hover { background:#cc0000; }
 
-    /* PRODUCTOS */
-    #productos {
-      background: #fff;
-      margin-top: 10px;
-      padding: 80px 20px;
-    }
-    .grid-productos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: #f9f9f9;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.2s ease;
-    }
-    .card:hover { transform: translateY(-5px); }
-    .card img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-    .card h3 { margin: 10px 0; color: #333; }
-    .card p { font-size: 14px; color: #555; }
-    .precio {
-      font-weight: bold;
-      color: #e91e63;
-      margin: 10px 0;
-    }
-    .card button {
-      background: #ff0000;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .card button:hover { background: #cc0000; }
+  /* ZOOM MODERNO */
+  .zoom-container { position:relative; overflow:hidden; cursor:zoom-in; }
+  .zoom-container img { display:block; width:100%; height:auto; transition:transform 0.3s ease; }
+  .zoom-container:hover img { transform:scale(1.2); }
 
-    /* FOOTER */
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+  /* MODAL FLEX MODERNO */
+  .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:2000; padding:20px; }
+  .modal-content { background:#fff; border-radius:12px; max-width:900px; width:90%; display:flex; gap:20px; position:relative; animation:fadeIn 0.3s ease; }
+  .modal-img-container { flex:1; }
+  .modal-img-container img { width:100%; height:100%; border-radius:10px; object-fit:cover; }
+  .modal-info { flex:1; display:flex; flex-direction:column; justify-content:center; text-align:left; }
+  .modal-info h3 { font-size:28px; margin-bottom:10px; color:#333; }
+  .modal-info p { font-size:16px; color:#555; margin-bottom:10px; }
+  .modal-info .precio { font-size:22px; font-weight:bold; color:#e91e63; }
+  .modal-info button { background:#ff0000; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; margin-top:15px; }
+  .modal-info button:hover { background:#cc0000; }
+  .close { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; color:#333; }
 
-    /* RESPONSIVE */
-    @media(max-width:768px){
-      nav ul { flex-direction: column; display: none; background: #d81b60; padding: 10px; }
-      nav ul.show { display: flex; }
-      .menu-toggle {
-        display: block;
-        cursor: pointer;
-      }
-    }
-    .menu-toggle { display: none; }
-  </style>
+  @keyframes fadeIn { from { opacity:0; transform:scale(0.9); } to { opacity:1; transform:scale(1); } }
+
+  /* FOOTER */
+  footer { background:#222; color:white; text-align:center; padding:20px; }
+
+  /* RESPONSIVE */
+  @media(max-width:768px){
+    nav ul { flex-direction:column; display:none; background:#d81b60; padding:10px; }
+    nav ul.show { display:flex; }
+    .menu-toggle { display:block; }
+    .productos-layout { flex-direction:column; }
+    #categorias { flex-direction:row; flex-wrap:wrap; width:100%; }
+    .modal-content { flex-direction:column; text-align:center; }
+    .modal-info { align-items:center; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <h1>Coronel Lugo</h1>
-    <span class="menu-toggle">☰</span>
-    <ul>
-      <li><a href="#inicio">Inicio</a></li>
-      <li><a href="#productos">Productos</a></li>
-      <li><a href="#sobre">Sobre mí</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav>
+  <h1>Coronel Lugo</h1>
+  <span class="menu-toggle">☰</span>
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
 
-  <!-- INICIO -->
-  <section id="inicio">
-    <h2>Bienvenidos</h2>
-    <p>Disfruten su estancia</p>
-  </section>
+<!-- INICIO -->
+<section id="inicio">
+  <h2>Bienvenidos</h2>
+  <p>Disfruten su estancia</p>
+</section>
 
-  <!-- PRODUCTOS -->
-  <section id="productos">
-    <div class="contenedor">
-      <h2>Productos</h2>
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="contenedor">
+    <h2>Productos</h2>
+    <div class="productos-layout">
+      <div id="categorias"></div>
       <div class="grid-productos"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SOBRE -->
-  <section id="sobre">
-    <div class="contenedor">
-      <h2>Sobre mí</h2>
-      <p>Hola, soy Coronel. Aquí puedes escribir una breve descripción sobre ti, tu trabajo o tu proyecto.</p>
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="contenedor">
+    <h2>Sobre mí</h2>
+    <p>Hola, soy Coronel. Aquí puedes escribir una breve descripción sobre ti, tu trabajo o tu proyecto.</p>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="contenedor">
+    <h2>Servicios</h2>
+    <p>✅ Diseño Web</p>
+    <p>✅ Desarrollo de Aplicaciones</p>
+    <p>✅ Marketing Digital</p>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contenedor">
+    <h2>Contacto</h2>
+    <p>Email: <a href="mailto:tucorreo@example.com">tucorreo@example.com</a></p>
+    <p>Teléfono: 809-556-4808</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Mi Página Web - Todos los derechos reservados</p>
+</footer>
+
+<!-- MODAL PRODUCTO -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="modal-img-container">
+      <img id="modal-img" src="" alt="">
     </div>
-  </section>
-
-  <!-- SERVICIOS -->
-  <section id="servicios">
-    <div class="contenedor">
-      <h2>Servicios</h2>
-      <p>✅ Diseño Web</p>
-      <p>✅ Desarrollo de Aplicaciones</p>
-      <p>✅ Marketing Digital</p>
+    <div class="modal-info">
+      <h3 id="modal-nombre"></h3>
+      <p id="modal-descripcion"></p>
+      <p class="precio" id="modal-precio"></p>
+      <button id="modal-comprar">Comprar</button>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <div class="contenedor">
-      <h2>Contacto</h2>
-      <p>Email: <a href="mailto:tucorreo@example.com">tucorreo@example.com</a></p>
-      <p>Teléfono: +1 234 567 890</p>
-    </div>
-  </section>
+<script>
+  // Menú responsive
+  document.querySelector(".menu-toggle").addEventListener("click", ()=>{
+    document.querySelector("nav ul").classList.toggle("show");
+  });
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Mi Página Web - Todos los derechos reservados</p>
-  </footer>
+  // Modal
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modal-img");
+  const modalNombre = document.getElementById("modal-nombre");
+  const modalDescripcion = document.getElementById("modal-descripcion");
+  const modalPrecio = document.getElementById("modal-precio");
+  const closeModal = document.querySelector(".close");
 
-  <script>
-    // Menú responsive
-    const toggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelector("nav ul");
-    toggle.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
+  function abrirModal(prod){
+    modal.style.display="flex";
+    modalImg.src = prod.imagenUrl;
+    modalNombre.textContent = prod.nombre;
+    modalDescripcion.textContent = prod.descripcion || "";
+    modalPrecio.textContent = "$" + prod.precio;
+  }
+
+  closeModal.addEventListener("click", ()=> modal.style.display="none");
+  window.addEventListener("click",(e)=>{ if(e.target===modal) modal.style.display="none"; });
+
+  document.getElementById("modal-comprar").addEventListener("click", ()=>{
+    alert("Producto agregado al carrito: "+ modalNombre.textContent);
+  });
+</script>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+import { getDatabase, ref, onValue, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDusRcoXAsg1FUhdeYGVj5GppCIfL6T3aY",
+  authDomain: "logincoronel.firebaseapp.com",
+  databaseURL: "https://logincoronel-default-rtdb.firebaseio.com",
+  projectId: "logincoronel",
+  storageBucket: "logincoronel.firebasestorage.app",
+  messagingSenderId: "197092606276",
+  appId: "1:197092606276:web:9b47d89f88842b270a5711"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const categoriasDiv = document.getElementById("categorias");
+const productosGrid = document.querySelector(".grid-productos");
+const productosRef = ref(db,"productos");
+
+// Cargar categorías dinámicas
+onValue(productosRef,(snapshot)=>{
+  const categorias = new Set(["Todos"]);
+  snapshot.forEach(child=>{ const prod = child.val(); if(prod.categoria) categorias.add(prod.categoria); });
+  categoriasDiv.innerHTML = "";
+  categorias.forEach(cat=>{
+    const btn=document.createElement("button");
+    btn.textContent=cat;
+    btn.addEventListener("click",()=>mostrarProductos(cat,btn));
+    if(cat==="Todos") btn.classList.add("active");
+    categoriasDiv.appendChild(btn);
+  });
+});
+
+// Mostrar productos
+function mostrarProductos(categoria="Todos",boton=null){
+  const consulta = (categoria==="Todos")? productosRef : query(productosRef,orderByChild("categoria"),equalTo(categoria));
+  onValue(consulta,(snapshot)=>{
+    productosGrid.innerHTML="";
+    snapshot.forEach(child=>{
+      const prod=child.val();
+      const card=document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML=`
+        <div class="zoom-container">
+          <img src="${prod.imagenUrl}" alt="${prod.nombre}">
+        </div>
+        <h3>${prod.nombre}</h3>
+        <p>${prod.descripcion || ""}</p>
+        <p class="precio">$${prod.precio}</p>
+        <button>Comprar</button>
+      `;
+      card.addEventListener("click",()=>abrirModal(prod));
+      productosGrid.appendChild(card);
     });
-  </script>
+  });
+  document.querySelectorAll("#categorias button").forEach(b=>b.classList.remove("active"));
+  if(boton) boton.classList.add("active");
+}
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
-
-    // 🔹 Configuración de tu proyecto Firebase (reemplaza con tus datos)
-    const firebaseConfig = {
-      apiKey: "AIzaSyDusRcoXAsg1FUhdeYGVj5GppCIfL6T3aY",
-      authDomain: "logincoronel.firebaseapp.com",
-      databaseURL: "https://logincoronel-default-rtdb.firebaseio.com",
-      projectId: "logincoronel",
-      storageBucket: "logincoronel.firebasestorage.app",
-      messagingSenderId: "197092606276",
-      appId: "1:197092606276:web:9b47d89f88842b270a5711"
-    };
-
-    // Inicializar Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
-    // Referencia a productos en la base de datos
-    const productosRef = ref(db, "productos");
-
-    // Escuchar cambios en productos y mostrarlos
-    onValue(productosRef, (snapshot) => {
-      const contenedor = document.querySelector(".grid-productos");
-      contenedor.innerHTML = ""; // limpiar antes de cargar
-      const productos = snapshot.val();
-
-      if (productos) {
-        Object.keys(productos).forEach((id) => {
-          const prod = productos[id];
-          const card = document.createElement("div");
-          card.classList.add("card");
-          card.innerHTML = `
-            <img src="${prod.imagenUrl}" alt="${prod.nombre}">
-            <h3>${prod.nombre}</h3>
-            <p>${prod.descripcion}</p>
-            <p class="precio">$${prod.precio}</p>
-            <button>Comprar</button>
-          `;
-          contenedor.appendChild(card);
-        });
-      }
-    });
-  </script>
+// Mostrar todos al inicio
+mostrarProductos();
+</script>
 
 </body>
 </html>
