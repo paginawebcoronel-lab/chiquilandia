@@ -7,53 +7,76 @@
 <style>
   /* RESET */
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Arial, sans-serif; line-height: 1.6; }
+  body { font-family: Arial, sans-serif; line-height: 1.6; background:#fafafa; }
 
   /* NAVBAR */
-  nav { position: fixed; top:0; left:0; width:100%; background:#ff0000; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; color:white; z-index:1000; }
+  nav { 
+    position: fixed; top:0; left:0; width:100%; 
+    background:#ff0000; padding:12px 20px; 
+    display:flex; justify-content:space-between; align-items:center; 
+    color:white; z-index:1000;
+  }
   nav h1 { font-size:22px; }
-  nav ul { list-style:none; display:flex; }
+  nav ul { list-style:none; display:flex; transition:max-height 0.3s ease; }
   nav ul li { margin:0 10px; }
   nav ul li a { color:white; text-decoration:none; font-weight:bold; }
   nav ul li a:hover { text-decoration:underline; }
-  .menu-toggle { display:none; cursor:pointer; }
+  .menu-toggle { display:none; cursor:pointer; font-size:26px; }
 
   /* SECCIONES */
   section { padding:100px 20px; min-height:100vh; }
-  #inicio { background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("https://picsum.photos/1200/600") center/cover no-repeat; color:white; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; }
+  #inicio { 
+    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), 
+    url("https://picsum.photos/1200/600") center/cover no-repeat; 
+    color:white; text-align:center; 
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+  }
   #inicio h2 { font-size:40px; margin-bottom:10px; }
   #inicio p { font-size:20px; }
   h2 { text-align:center; margin-bottom:20px; color:#000; }
-  .contenedor { max-width:1200px; margin:auto; }
+  .contenedor { max-width:1200px; margin:auto; padding:0 15px; }
 
   /* PRODUCTOS */
-  #productos { background:#fff; margin-top:10px; padding:80px 20px; }
-  .productos-layout { display:flex; gap:20px; }
-  #categorias { width:200px; flex-shrink:0; display:flex; flex-direction:column; gap:10px; }
-  #categorias button { padding:10px; border:none; border-radius:8px; cursor:pointer; background:#eee; transition:0.3s; text-align:left; }
+  #productos { background:#fff; padding:80px 20px; }
+  .productos-layout { display:flex; gap:20px; flex-wrap:wrap; }
+  #categorias { flex:0 0 200px; display:flex; flex-direction:column; gap:10px; }
+  #categorias button { 
+    padding:10px; border:none; border-radius:8px; 
+    cursor:pointer; background:#eee; transition:0.3s; text-align:left; 
+  }
   #categorias button.active, #categorias button:hover { background:#ff0000; color:white; }
   .grid-productos { flex:1; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
-  .card { background:#f9f9f9; border-radius:10px; padding:15px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; transition:transform 0.2s ease; cursor:pointer; position:relative; overflow:hidden; }
+  .card { 
+    background:#f9f9f9; border-radius:10px; padding:15px; 
+    box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; 
+    transition:transform 0.2s ease; cursor:pointer; overflow:hidden;
+  }
   .card:hover { transform:translateY(-5px); }
-  .card img { max-width:100%; border-radius:10px; margin-bottom:10px; height:150px; object-fit:cover; }
-  .card h3 { margin:10px 0; color:#333; }
+  .card img { 
+    width:100%; border-radius:10px; margin-bottom:10px; 
+    aspect-ratio: 4/3; object-fit:cover; 
+  }
+  .card h3 { margin:10px 0; color:#333; font-size:18px; }
   .card p { font-size:14px; color:#555; }
   .precio { font-weight:bold; color:#e91e63; margin:10px 0; }
   .card button { background:#ff0000; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; }
   .card button:hover { background:#cc0000; }
 
-  /* ZOOM MODERNO */
-  .zoom-container { position:relative; overflow:hidden; cursor:zoom-in; }
-  .zoom-container img { display:block; width:100%; height:auto; transition:transform 0.3s ease; }
-  .zoom-container:hover img { transform:scale(1.2); }
-
   /* MODAL FLEX MODERNO */
-  .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:2000; padding:20px; }
-  .modal-content { background:#fff; border-radius:12px; max-width:900px; width:90%; display:flex; gap:20px; position:relative; animation:fadeIn 0.3s ease; }
-  .modal-img-container { flex:1; }
-  .modal-img-container img { width:100%; height:100%; border-radius:10px; object-fit:cover; }
-  .modal-info { flex:1; display:flex; flex-direction:column; justify-content:center; text-align:left; }
-  .modal-info h3 { font-size:28px; margin-bottom:10px; color:#333; }
+  .modal { 
+    display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+    background:rgba(0,0,0,0.8); justify-content:center; align-items:center; 
+    z-index:2000; padding:20px; 
+  }
+  .modal-content { 
+    background:#fff; border-radius:12px; max-width:900px; width:95%; 
+    display:flex; gap:20px; position:relative; animation:fadeIn 0.3s ease;
+    flex-wrap:wrap;
+  }
+  .modal-img-container { flex:1 1 300px; }
+  .modal-img-container img { width:100%; border-radius:10px; object-fit:cover; }
+  .modal-info { flex:1 1 300px; display:flex; flex-direction:column; justify-content:center; }
+  .modal-info h3 { font-size:24px; margin-bottom:10px; color:#333; }
   .modal-info p { font-size:16px; color:#555; margin-bottom:10px; }
   .modal-info .precio { font-size:22px; font-weight:bold; color:#e91e63; }
   .modal-info button { background:#ff0000; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; margin-top:15px; }
@@ -67,11 +90,14 @@
 
   /* RESPONSIVE */
   @media(max-width:768px){
-    nav ul { flex-direction:column; display:none; background:#d81b60; padding:10px; }
-    nav ul.show { display:flex; }
+    nav ul { 
+      flex-direction:column; max-height:0; overflow:hidden; 
+      width:100%; background:#ff0000; 
+    }
+    nav ul.show { max-height:300px; }
     .menu-toggle { display:block; }
     .productos-layout { flex-direction:column; }
-    #categorias { flex-direction:row; flex-wrap:wrap; width:100%; }
+    #categorias { flex-direction:row; flex-wrap:wrap; width:100%; justify-content:center; }
     .modal-content { flex-direction:column; text-align:center; }
     .modal-info { align-items:center; }
   }
@@ -159,9 +185,9 @@
 
 <script>
   // Menú responsive
-  document.querySelector(".menu-toggle").addEventListener("click", ()=>{
-    document.querySelector("nav ul").classList.toggle("show");
-  });
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navUl = document.querySelector("nav ul");
+  menuToggle.addEventListener("click", ()=> navUl.classList.toggle("show"));
 
   // Modal
   const modal = document.getElementById("modal");
@@ -182,9 +208,9 @@
   closeModal.addEventListener("click", ()=> modal.style.display="none");
   window.addEventListener("click",(e)=>{ if(e.target===modal) modal.style.display="none"; });
 
-  document.getElementById("modal-comprar").addEventListener("click", ()=>{
-    alert("Producto agregado al carrito: "+ modalNombre.textContent);
-  });
+  document.getElementById("modal-comprar").addEventListener("click", ()=> 
+    alert("Producto agregado al carrito: "+ modalNombre.textContent)
+  );
 </script>
 
 <!-- Firebase -->
@@ -224,18 +250,18 @@ onValue(productosRef,(snapshot)=>{
 });
 
 // Mostrar productos
+let unsubscribe=null;
 function mostrarProductos(categoria="Todos",boton=null){
+  if(unsubscribe) unsubscribe(); // evita múltiples listeners
   const consulta = (categoria==="Todos")? productosRef : query(productosRef,orderByChild("categoria"),equalTo(categoria));
-  onValue(consulta,(snapshot)=>{
+  unsubscribe = onValue(consulta,(snapshot)=>{
     productosGrid.innerHTML="";
     snapshot.forEach(child=>{
       const prod=child.val();
       const card=document.createElement("div");
       card.classList.add("card");
       card.innerHTML=`
-        <div class="zoom-container">
-          <img src="${prod.imagenUrl}" alt="${prod.nombre}">
-        </div>
+        <img src="${prod.imagenUrl}" alt="${prod.nombre}">
         <h3>${prod.nombre}</h3>
         <p>${prod.descripcion || ""}</p>
         <p class="precio">$${prod.precio}</p>
